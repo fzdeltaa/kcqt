@@ -1,0 +1,322 @@
+/* ────────────────────────────────────────────────────────────────
+   KC Quest Tracker — Tracker Page Styles
+   ──────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:          #1e1e2e;
+  --bg-surface:  #27273a;
+  --bg-header:   #1a1a2e;
+  --border:      #383850;
+  --text:        #cdd6f4;
+  --text-muted:  #6c7086;
+  --accent:      #89b4fa;
+
+  --state-available: #a6e3a1;
+  --state-active:    #fab387;
+  --state-completed: #f38ba8;
+
+  --cat-comp:        #a6e3a1;
+  --cat-sortie:      #f38ba8;
+  --cat-exercise:    #a6e3a1;
+  --cat-expedition:  #89b4fa;
+  --cat-supply:      #f9e2af;
+  --cat-arsenal:     #fab387;
+  --cat-modernize:   #cba6f7;
+
+  --row-hover:   #2e2e44;
+  --radius:      6px;
+  --font:        'Segoe UI', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.toolbar-left, .toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.app-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.last-updated {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Filters ─────────────────────────────────────────────────── */
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.filter-group select {
+  background: var(--bg-surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px 6px;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-group select:focus {
+  border-color: var(--accent);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+
+.btn {
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  cursor: pointer;
+  background: var(--bg-surface);
+  color: var(--text);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover { background: var(--row-hover); }
+
+.btn-danger {
+  border-color: var(--state-completed);
+  color: var(--state-completed);
+}
+
+.btn-danger:hover { background: rgba(243,139,168,0.15); }
+
+/* ── Summary bar ─────────────────────────────────────────────── */
+
+.summary-bar {
+  display: flex;
+  gap: 24px;
+  padding: 8px 14px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.summary-count {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.summary-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-label.available { color: var(--state-available); }
+.summary-label.active    { color: var(--state-active); }
+.summary-label.completed { color: var(--state-completed); }
+
+/* ── Empty state ─────────────────────────────────────────────── */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.empty-icon { font-size: 40px; }
+.hint { font-size: 11px; opacity: 0.7; }
+
+/* ── Quest table ─────────────────────────────────────────────── */
+
+.quest-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.quest-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-header);
+}
+
+.quest-table th {
+  padding: 7px 10px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.quest-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quest-table tbody tr:hover { background: var(--row-hover); }
+
+/* Column widths */
+.col-id       { width: 54px; }
+.col-state    { width: 96px; }
+.col-progress { width: 90px; }
+.col-category { width: 96px; }
+.col-type     { width: 78px; }
+.col-prereq   { width: 90px; }
+.col-unlock   { width: 90px; }
+.col-title    { width: auto; }
+
+/* ── State badge ─────────────────────────────────────────────── */
+
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.badge-available { background: rgba(166,227,161,0.15); color: var(--state-available); }
+.badge-active    { background: rgba(250,179,135,0.15); color: var(--state-active); }
+.badge-completed { background: rgba(243,139,168,0.15); color: var(--state-completed); }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+  max-width: 56px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--state-active);
+  border-radius: 100px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill.full { background: var(--state-completed); }
+
+.progress-pct {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 28px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Category dot ────────────────────────────────────────────── */
+
+.cat-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.cat-dot::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cat-1::before { background: var(--cat-comp); }
+.cat-2::before { background: var(--cat-sortie); }
+.cat-3::before { background: var(--cat-exercise); }
+.cat-4::before { background: var(--cat-expedition); }
+.cat-5::before { background: var(--cat-supply); }
+.cat-6::before { background: var(--cat-arsenal); }
+.cat-7::before { background: var(--cat-modernize); }
+.cat-8::before { background: var(--cat-sortie); }
+.cat-9::before { background: var(--cat-sortie); }
+.cat-10::before { background: var(--cat-sortie); }
+.cat-11::before { background: var(--cat-arsenal); }
+
+/* ── Type label ──────────────────────────────────────────────── */
+
+.type-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Utility ─────────────────────────────────────────────────── */
+
+.hidden { display: none !important; }
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Scrollable table container */
+.table-wrap {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.quest-table {
+  min-width: 820px;
+}

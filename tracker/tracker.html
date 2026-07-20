@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KC Quest Tracker</title>
+  <link rel="stylesheet" href="tracker.css">
+</head>
+<body>
+  <div id="app">
+    <header class="toolbar">
+      <div class="toolbar-left">
+        <h1 class="app-title">⚓ KC Quest Tracker</h1>
+        <span id="last-updated" class="last-updated">No data yet — open the quest page in-game</span>
+      </div>
+      <div class="toolbar-right">
+        <div class="filter-group">
+          <label>State</label>
+          <select id="filter-state">
+            <option value="all">All</option>
+            <option value="1">Available</option>
+            <option value="2">Active</option>
+            <option value="3">Completed</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Category</label>
+          <select id="filter-category">
+            <option value="all">All</option>
+            <option value="1">Composition</option>
+            <option value="2">Sortie</option>
+            <option value="3">Exercise</option>
+            <option value="4">Expedition</option>
+            <option value="5">Supply</option>
+            <option value="6">Arsenal</option>
+            <option value="7">Modernization</option>
+            <option value="10">Sortie(D)</option>
+            <option value="11">Arsenal(B)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Type</label>
+          <select id="filter-type">
+            <option value="all">All</option>
+            <option value="1">Daily</option>
+            <option value="2">Weekly</option>
+            <option value="3">Monthly</option>
+            <option value="4">One-time</option>
+            <option value="5">Other</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <input type="file" id="kc3-import" accept=".kc3" class="hidden">
+          <button id="btn-import" class="btn" title="Import KC3 .kc3 profile to populate data">Import KC3</button>
+        </div>
+        <button id="btn-clear" class="btn btn-danger" title="Clear all stored quest data">Clear Data</button>
+      </div>
+    </header>
+
+    <div id="summary" class="summary-bar hidden">
+      <div class="summary-item">
+        <span class="summary-count" id="count-available">0</span>
+        <span class="summary-label available">Available</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-count" id="count-active">0</span>
+        <span class="summary-label active">Active</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-count" id="count-completed">0</span>
+        <span class="summary-label completed">Completed</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-count" id="count-total">0</span>
+        <span class="summary-label">Total seen</span>
+      </div>
+    </div>
+
+    <div id="empty-state" class="empty-state">
+      <div class="empty-icon">📋</div>
+      <p>Open the quest page in-game to populate this tracker.</p>
+      <p class="hint">The extension activates automatically when you visit the game page.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table id="quest-table" class="quest-table hidden">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th class="col-state">State</th>
+            <th class="col-progress">Progress</th>
+            <th class="col-category">Category</th>
+            <th class="col-type">Type</th>
+            <th class="col-prereq">Prerequisite</th>
+            <th class="col-unlock">Unlocks</th>
+            <th class="col-title">Title</th>
+          </tr>
+        </thead>
+        <tbody id="quest-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="tracker.js"></script>
+</body>
+</html>
