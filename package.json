@@ -1,0 +1,15 @@
+{
+  "name": "kcqt",
+  "version": "1.0.0",
+  "description": "Kantai Collection Quest Tracker",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "vendor": "node scripts/vendor.js"
+  },
+  "dependencies": {
+    "cytoscape": "^3.34.0",
+    "cytoscape-dagre": "^4.0.0"
+  }
+}
