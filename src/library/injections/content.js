@@ -52,7 +52,6 @@
       if (tabId === 0) {
         for (const [id, ext] of Object.entries(existing)) {
           if (!incomingIds.has(id)) {
-            // If it wasn't in the game's all-quests list, it was completed (3) or remains completed (3)
             merged[id] = {
               ...ext,
               state: Math.max(ext.state || 0, 3),
