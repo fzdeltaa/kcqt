@@ -59,10 +59,20 @@ async function showAll() {
   });
   document.getElementById('quest-search-clear').addEventListener('click', showAll);
 
+  document.getElementById('reset-data-btn').addEventListener('click', async () => {
+    if (!confirm('Reset all quest data? This will also re-fetch quest definitions.')) return;
+    await QuestManager.resetAll();
+    await QuestManager.load({ force: true });
+    await QuestManager.loadFromExtensionStorage();
+    await GraphRenderer.render(QuestManager.toCytoscapeElements());
+  });
+
   try {
     await QuestManager.load();
+    await QuestManager.loadFromExtensionStorage();
     await GraphRenderer.render(QuestManager.toCytoscapeElements());
   } catch (err) {
-    alert('Failed to load quest data');
+    console.error('[KCQT Tracker Error]', err);
+    alert(`Failed to load quest data: ${err.message || err}`);
   }
 })();

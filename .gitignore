@@ -137,6 +137,4 @@ dist
 refs/
 src/tracker
 src/inject
-src/background.js
-src/manifest.json
 src/data

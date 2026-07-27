@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "KCQT - Kancolle Quest Tracker",
+  "short_name": "KCQT",
+  "description": "Standalone quest state tracker for Kantai Collection",
+  "version": "0.1.0",
+  "browser_action": {
+    "default_popup": "pages/popup/popup.html",
+    "default_title": "KCQT"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.dmm.com/*",
+        "*://*.kancolle-server.com/*"
+      ],
+      "js": ["library/injections/content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "permissions": [
+    "storage",
+    "tabs",
+    "*://*.dmm.com/*",
+    "*://*.kancolle-server.com/*",
+    "https://raw.githubusercontent.com/*"
+  ],
+  "web_accessible_resources": [
+    "library/injections/page.js"
+  ]
+}

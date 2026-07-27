@@ -1,86 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>KC Quest Tracker</title>
+  <meta charset="UTF-8">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      width: 220px;
-      background: #1e1e2e;
-      color: #cdd6f4;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      font-size: 13px;
-    }
-    .header {
-      padding: 12px 14px 10px;
-      border-bottom: 1px solid #383850;
-    }
-    .title {
+      min-width: 220px;
+      padding: 12px;
+      margin: 0;
+      font-family: system-ui, sans-serif;
       font-size: 14px;
-      font-weight: 600;
-      color: #89b4fa;
-      margin-bottom: 2px;
     }
-    .subtitle {
-      font-size: 11px;
-      color: #6c7086;
-    }
-    .stats {
+    label {
       display: flex;
-      justify-content: space-around;
-      padding: 10px 8px;
-      border-bottom: 1px solid #383850;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
     }
-    .stat { text-align: center; }
-    .stat-num {
-      font-size: 20px;
-      font-weight: 700;
-      display: block;
-    }
-    .stat-lbl {
-      font-size: 10px;
-      color: #6c7086;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .c-avail    { color: #a6e3a1; }
-    .c-active   { color: #fab387; }
-    .c-complete { color: #f38ba8; }
-    .btn-open {
-      display: block;
-      width: calc(100% - 16px);
-      margin: 10px 8px;
-      padding: 8px;
-      background: #313244;
-      color: #89b4fa;
-      border: 1px solid #45475a;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
+    button {
+      width: 100%;
+      padding: 6px 12px;
       cursor: pointer;
-      text-align: center;
-      transition: background 0.15s;
-    }
-    .btn-open:hover { background: #45475a; }
-    .no-data {
-      padding: 12px 14px;
-      font-size: 11px;
-      color: #6c7086;
-      text-align: center;
-      line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="title">⚓ KC Quest Tracker</div>
-    <div class="subtitle" id="last-updated">Loading…</div>
-  </div>
-  <div id="stats-wrap">
-    <div class="no-data">Open the quest page in-game to populate data.</div>
-  </div>
-  <button class="btn-open" id="btn-open">Open Full Tracker ↗</button>
+  <label>
+    <input type="checkbox" id="intercept-toggle">
+    Intercept Quest List
+  </label>
+  <button id="open-tracker-btn">Open Tracker</button>
   <script src="popup.js"></script>
 </body>
 </html>
