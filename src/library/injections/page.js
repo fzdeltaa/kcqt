@@ -1,4 +1,4 @@
-;(() => {
+; (() => {
   'use strict'
 
   const TARGET_API = '/kcsapi/api_get_member/questlist'
@@ -34,7 +34,7 @@
             }
           })
 
-          console.log('[KCQT] intercepted questlist API, quests:', Object.keys(quests).length)
+          // console.log('[KCQT] intercepted questlist API, quests:', Object.keys(quests).length)
           window.postMessage({ __kcqt: true, type: 'KCQT_QUESTLIST', tabId, quests }, '*')
         } catch (e) {
           // not every XHR to this path is a valid questlist response — ignore
@@ -49,7 +49,7 @@
       const qs = new URL(url, location.href).searchParams
       const fromQuery = qs.get('api_tab_id')
       if (fromQuery !== null) return parseInt(fromQuery, 10)
-    } catch (_) {}
+    } catch (_) { }
 
     if (typeof body === 'string') {
       const match = body.match(/api_tab_id=(\d+)/)
